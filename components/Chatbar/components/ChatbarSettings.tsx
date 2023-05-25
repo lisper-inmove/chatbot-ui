@@ -1,4 +1,4 @@
-import { IconFileExport, IconSettings } from '@tabler/icons-react';
+import { IconFileExport, IconSettings, IconLogin } from '@tabler/icons-react';
 import { useContext, useState } from 'react';
 
 import { useTranslation } from 'next-i18next';
@@ -13,6 +13,8 @@ import { SidebarButton } from '../../Sidebar/SidebarButton';
 import ChatbarContext from '../Chatbar.context';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
+import { LoginPanel } from './Login';
+import { RechargePanel } from './Recharge';
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
@@ -25,6 +27,8 @@ export const ChatbarSettings = () => {
       serverSideApiKeyIsSet,
       serverSidePluginKeysSet,
       conversations,
+      loginPanel,
+      rechargePanel,
     },
     dispatch: homeDispatch,
   } = useContext(HomeContext);
@@ -42,32 +46,10 @@ export const ChatbarSettings = () => {
         <ClearConversations onClearConversations={handleClearConversations} />
       ) : null}
 
-      <Import onImport={handleImportConversations} />
+      {!rechargePanel ? <RechargePanel /> : null}
 
-      <SidebarButton
-        text={t('Export data')}
-        icon={<IconFileExport size={18} />}
-        onClick={() => handleExportData()}
-      />
+      {!loginPanel ? <LoginPanel /> : null}
 
-      <SidebarButton
-        text={t('Settings')}
-        icon={<IconSettings size={18} />}
-        onClick={() => setIsSettingDialog(true)}
-      />
-
-      {!serverSideApiKeyIsSet ? (
-        <Key apiKey={apiKey} onApiKeyChange={handleApiKeyChange} />
-      ) : null}
-
-      {!serverSidePluginKeysSet ? <PluginKeys /> : null}
-
-      <SettingDialog
-        open={isSettingDialogOpen}
-        onClose={() => {
-          setIsSettingDialog(false);
-        }}
-      />
     </div>
   );
 };
