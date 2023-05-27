@@ -76,6 +76,18 @@ export const LoginPanel = () => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
+    const phone_regex = /^[1-9]\d{9}$/;
+    if (phone && !phone_regex.test(phone)) {
+      alert("手机号不正确");
+      return;
+    }
+
+    const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 邮箱格式验证正则表达式
+    if (email && !email_regex.test(email)) {
+      alert("邮箱不正确");
+      return;
+    }
+
     try {
       const data = {
         phone: phone,
