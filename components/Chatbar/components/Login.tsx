@@ -189,7 +189,7 @@ export const LoginPanel = () => {
                 checked={isPhoneLogin}
                 onChange={handleToggleLoginMode}
               />
-              <span class="long-text">手机</span>
+              <span className="long-text">手机</span>
             </label>
             <label>
               <input
@@ -199,7 +199,7 @@ export const LoginPanel = () => {
                 checked={!isPhoneLogin}
                 onChange={handleToggleLoginMode}
               />
-              <span class="long-text">邮箱</span>
+              <span className="long-text">邮箱</span>
             </label>
           </div>
 
