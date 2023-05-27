@@ -31,48 +31,32 @@ export const LoginPanel = () => {
   async function checkToken() {
     const user_json = localStorage.getItem(userinfo_name);
 
-    if (!user_json && !isLogin) {
+    if (!user_json) {
       return;
     }
 
     const user_obj = JSON.parse(user_json);
+    userinfo['username'] = user_obj.username;
+
     const token = user_obj.token;
     const token_expire_at = user_obj.token_expire_at;
     const timestamp = Date.now() / 1000;
     const currentDate = new Date();
-    userinfo['username'] = user_obj.username;
 
     console.log(token_expire_at, timestamp);
+    console.log("当前时间: " + currentDate);
+    console.log("token过期时间: " + new Date(token_expire_at * 1000));
 
-    if (token_expire_at > timestamp) {
-      // token没过期,不用检查
-      console.log("当前时间: " + currentDate);
-      console.log("token过期时间: " + new Date(token_expire_at * 1000));
+    if (isLogin) {
       return;
     }
 
-    try {
-      const data = {
-        "1": "1"
-      };
-      const headers = {
-        "headers": {
-          "token": token
-        }
-      }
-      const response = await axios.post(
-        check_token_url,
-        data,
-        headers,
-      );
-      if (response.data.code == 0) {
-        setIsLogin(true);
-        return;
-      }
-    } catch(error) {
-      console.log("Check Token error", error);
-      setIsLogin(false);
+    if (token_expire_at > timestamp) {
+      // token没过期,不用检查
+      setIsLogin(true);
+      return;
     }
+
   }
 
   checkToken();

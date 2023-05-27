@@ -20,6 +20,9 @@ export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
   const [isSettingDialogOpen, setIsSettingDialog] = useState<boolean>(false);
 
+  const userinfo = localStorage.getItem('userinfo') ? JSON.parse(localStorage.getItem('userinfo')!) : null;
+  console.log(userinfo);
+
   const {
     state: {
       apiKey,
@@ -49,6 +52,8 @@ export const ChatbarSettings = () => {
       {!rechargePanel ? <RechargePanel /> : null}
 
       {!loginPanel ? <LoginPanel /> : null}
+
+      {userinfo ? "dashboard" : null}
 
     </div>
   );
