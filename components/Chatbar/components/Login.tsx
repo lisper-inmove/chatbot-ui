@@ -186,7 +186,7 @@ export const LoginPanel = () => {
 
     {isLogin && (
     <SidebarButton
-      text={t('Logout > ' + userinfo.username)}
+      text={t(userinfo.username)}
       icon={<IconLogout size={18} />}
       onClick={logout}
     />
