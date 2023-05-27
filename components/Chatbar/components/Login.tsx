@@ -76,7 +76,8 @@ export const LoginPanel = () => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    const phone_regex = /^[1-9]\d{9}$/;
+    const phone_regex = /^1[0-9]{10}$/;
+    console.log(phone_regex.test(phone));
     if (phone && !phone_regex.test(phone)) {
       alert("手机号不正确");
       return;
