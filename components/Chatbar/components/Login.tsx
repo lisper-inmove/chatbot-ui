@@ -23,25 +23,47 @@ export const LoginPanel = () => {
     setIsPhoneLogin(!isPhoneLogin);
   };
 
-  const token_name = "asdf-token";
-  const u_username = "asdf-username";
+  const userinfo_name = "userinfo";
+  let userinfo = {
+    "username": "未登陆",
+  };
 
   async function checkToken() {
-    const token = localStorage.getItem(token_name);
-    if (!token && !isLogin) {
-        return;
-    }
-    if (!token) {
-      console.log('CheckToken');
+    const user_json = localStorage.getItem(userinfo_name);
+
+    if (!user_json && !isLogin) {
       return;
     }
+
+    const user_obj = JSON.parse(user_json);
+    const token = user_obj.token;
+    const token_expire_at = user_obj.token_expire_at;
+    const timestamp = Date.now() / 1000;
+    const currentDate = new Date();
+    userinfo['username'] = user_obj.username;
+
+    console.log(token_expire_at, timestamp);
+
+    if (token_expire_at > timestamp) {
+      // token没过期,不用检查
+      console.log("当前时间: " + currentDate);
+      console.log("token过期时间: " + new Date(token_expire_at * 1000));
+      return;
+    }
+
     try {
       const data = {
-        token: localStorage.getItem(token_name),
+        "1": "1"
       };
+      const headers = {
+        "headers": {
+          "token": token
+        }
+      }
       const response = await axios.post(
         check_token_url,
         data,
+        headers,
       );
       if (response.data.code == 0) {
         setIsLogin(true);
@@ -85,9 +107,8 @@ export const LoginPanel = () => {
         return;
       }
       // event.currentTarget.reset();
-      localStorage.setItem(token_name, response.data.data.token);
-      localStorage.setItem(u_username, response.data.data.username);
-      console.log('Api response', response.data);
+      console.log('Api response', response.data.data);
+      localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
 
     } catch (error) {
       console.error('Login error', error);
@@ -97,8 +118,7 @@ export const LoginPanel = () => {
   };
 
   const logout = (): void => {
-    localStorage.removeItem(token_name);
-    localStorage.removeItem(u_username);
+    localStorage.removeItem(userinfo_name);
     setIsLogin(false);
   }
 
@@ -158,7 +178,7 @@ export const LoginPanel = () => {
 
     {!isLogin && (
     <SidebarButton
-      text={t('Login<' + localStorage.getItem(u_username) + '>')}
+      text={t('Login > 未登陆')}
       icon={<IconLogin size={18} />}
       onClick={() => setIsLogin(true)}
     />
@@ -166,7 +186,7 @@ export const LoginPanel = () => {
 
     {isLogin && (
     <SidebarButton
-      text={t('Logout<' + localStorage.getItem(u_username) + '>')}
+      text={t('Logout > ' + userinfo.username)}
       icon={<IconLogout size={18} />}
       onClick={logout}
     />
