@@ -11,7 +11,7 @@ export const LoginPanel = () => {
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const bhost = "http://192.168.3.124:6003";
+  const bhost = process.env.USER_MANAGER_HOST;
   const login_url = `${bhost}/user/login`;
   const check_token_url = `${bhost}/user/check-token`;
 
