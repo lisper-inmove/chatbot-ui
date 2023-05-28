@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import axios from 'axios';
 
+
 export const LoginPanel = () => {
 
   const { t } = useTranslation('sidebar');
@@ -67,7 +68,7 @@ export const LoginPanel = () => {
     setIsLogin(false);
   };
 
-  const handleLoginSubmit = async (event: SyntheticEvent): Promize<void> => {
+  const handleLoginSubmit = async (event: SyntheticEvent): Promise<void> => {
     event.preventDefault();
     // 处理登录逻辑
     console.log('登录表单已提交');
@@ -132,7 +133,7 @@ export const LoginPanel = () => {
     }
   };
 
-  const handleInvalidPhone = (e): void => {
+  const handleInvalidPhone = (e: any): boolean => {
     if (e.target.value == "") {
       console.log("no");
       e.target.setCustomValidity("手机号不能为空");
@@ -141,7 +142,7 @@ export const LoginPanel = () => {
     return true;
   }
 
-  const handleInvalidEmail = (e): void => {
+  const handleInvalidEmail = (e: any): boolean => {
     if (e.target.value == "") {
       console.log("no");
       e.target.setCustomValidity("邮箱不能为空");
@@ -150,7 +151,7 @@ export const LoginPanel = () => {
     return true;
   }
 
-  const handleInvalidPassword = (e): void => {
+  const handleInvalidPassword = (e: any): boolean => {
     if (e.target.value == "") {
       console.log("no");
       e.target.setCustomValidity("密码不能为空");
@@ -159,7 +160,7 @@ export const LoginPanel = () => {
     return true;
   }
 
-  const handleInputValid = (e): voild => {
+  const handleInputValid = (e: any): void => {
     e.target.setCustomValidity("");
   }
 
