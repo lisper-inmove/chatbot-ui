@@ -48,40 +48,36 @@ pre:has(div.codeblock) {
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 9999;
 }
 
 .modal {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #222;
   padding: 20px;
   border-radius: 5px;
-  border: 1px solid #fff; /* 添加白色边框 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+  width: 90%;
+  max-width: 400px;
 }
 
 .close {
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 }
 
 .login-title {
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .input-wrapper {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 input {
@@ -100,16 +96,27 @@ label {
 .login-btn {
   width: 100%;
   padding: 10px;
-  border-radius: 3px;
   border: none;
-  background-color: #fff;
-  color: #000;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
 }
 
 .input-black {
-  color: #000;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #333;
+  color: #f5f5f5;
 }
+
 
 .recharge-modal-overlay {
   position: fixed;
