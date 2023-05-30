@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useRef } from 'react';
+import { USER_MANAGER_HOST } from '@/utils/app/const';
 import { IconLogin, IconLogout } from '@tabler/icons-react';
 import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
@@ -11,9 +12,8 @@ export const LoginPanel = () => {
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const bhost = "http://192.168.3.124:6003";
-  const login_url = `${bhost}/user/login`;
-  const check_token_url = `${bhost}/user/check-token`;
+  const login_url = `${USER_MANAGER_HOST}/user/login`;
+  const check_token_url = `${USER_MANAGER_HOST}/user/check-token`;
 
   const [isPhoneLogin, setIsPhoneLogin] = useState(true);
   const [phone, setPhone] = useState('');
