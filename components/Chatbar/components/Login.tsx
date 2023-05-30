@@ -3,6 +3,7 @@ import { IconLogin, IconLogout } from '@tabler/icons-react';
 import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { USER_MANAGER_HOST } from '@/utils/app/const';
 
 
 export const LoginPanel = () => {
@@ -10,8 +11,8 @@ export const LoginPanel = () => {
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const login_url = `${process.env.USER_MANAGER_HOST}/user/login`;
-  const check_token_url = `${process.env.USER_MANAGER_HOST}/user/check-token`;
+  const login_url = `${USER_MANAGER_HOST}/user/login`;
+  const check_token_url = `${USER_MANAGER_HOST}/user/check-token`;
 
   const [isPhoneLogin, setIsPhoneLogin] = useState(true);
   const [phone, setPhone] = useState('');
