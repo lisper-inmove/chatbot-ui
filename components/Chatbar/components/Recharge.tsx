@@ -150,9 +150,9 @@ export const RechargePanel = () => {
           <div className="modal" ref={modalRef}>
             <div className="options-container">
               <div>
-                {recharge_config_list.map(({ id, name, price}) => (
+                {recharge_config_list.map(({ id, name, price}, index) => (
                   <button
-                    className={`option recharge-button ${selectedOption === id ? 'selected' : ''}`}
+                    className={`option recharge-button ${selectedOption === id ? 'selected' : ''} ${index === 0 ? 'selected' : ''}`}
                     key={id}
                     onClick={() => getPayQrcodeUrl(id)}
                   >
