@@ -115,7 +115,7 @@ export const RechargePanel = () => {
     fetch(recharge_config_list_url, requestOptions)
       .then(response => response.json())
       .then(data => {
-        data.data.recharge_configs.sort((a, b) => b.price - a.price);
+        data.data.recharge_configs.sort((a: any, b: any) => b.price - a.price);
         setRechargeConfigList(data.data.recharge_configs);
       });
   }, []);
@@ -149,6 +149,7 @@ export const RechargePanel = () => {
         <div className="recharge-modal-overlay">
           <div className="modal" ref={modalRef}>
             <div className="options-container">
+              支付成功之后请刷新页面!!!
               <div>
                 {recharge_config_list.map(({ id, name, price}, index) => (
                   <button
