@@ -211,6 +211,30 @@ label {
   background-color: #999;
 }
 
+.qrcode-tip-container {
+  display: flex; /* 将二维码和提示放在同一行上 */
+  align-items: center; /* 垂直居中对齐 */
+  justify-content: center; /* 二维码和提示水平对齐居两侧 */
+  margin-bottom: 20px; /* 设置底部间距 */
+}
+
+.qrcode-container {
+  margin-right: 20px; /* 设置二维码右边的间距 */
+}
+
+.oq-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .recharge-tip {
   text-align: center;
+  color: red;
+  word-break: break-word;
+  overflow: hidden; /* 添加 overflow 属性 */
+  text-overflow: ellipsis; /* 添加 text-overflow 属性 */
+  display: -webkit-box; /* 添加 -webkit-box 属性 */
+  -webkit-box-orient: vertical; /* 添加 -webkit-box-orient 属性 */
+  -webkit-line-clamp: 2; /* 添加 -webkit-line-clamp 属性，设置最大显示行数 */
 }
+

@@ -29,14 +29,17 @@ export const RechargePanel = () => {
   const [recharge_config_list, setRechargeConfigList] = useState<RechargeConfig[]>([]);
 
   const handleButtonClick = async (): Promise<void> => {
+    if (recharge_config_list.length == 0) {
+      return;
+    }
     if (recharge_config_list.length == 1) {
       setIsSingleRechargeModalOpen(true);
       setIsMultiRechargeModalOpen(false);
-      getPayQrcodeUrl(recharge_config_list[0].id);
     } else {
       setIsSingleRechargeModalOpen(false);
       setIsMultiRechargeModalOpen(true);
     }
+    getPayQrcodeUrl(recharge_config_list[0].id);
   };
 
   const getPayQrcodeUrl = async (id: any): Promise<void> => {
@@ -145,35 +148,39 @@ export const RechargePanel = () => {
         </div>
       )}
 
-    {isMultiRechargeModalOpen && (
+      {isMultiRechargeModalOpen && (
         <div className="recharge-modal-overlay">
           <div className="modal" ref={modalRef}>
-            <div className="recharge-tip">支付成功之后请刷新页面!!!</div>
-            <div className="options-container">
-              <div>
-                {recharge_config_list.map(({ id, name, price}, index) => (
-                  <button
-                    className={`option recharge-button ${selectedOption === id ? 'selected' : ''} ${index === 0 ? 'selected' : ''}`}
-                    key={id}
-                    onClick={() => getPayQrcodeUrl(id)}
-                  >
-                    <div>{name}</div>
-                    <div>{(price / 100).toFixed(2)}元</div>
-                  </button>
-                ))}
+            <div className="oq-container">
+              <div className="options-container">
+                <div>
+                  {recharge_config_list.map(({ id, name, price }, index) => (
+                    <button
+                      className={`option recharge-button ${selectedOption === id ? 'selected' : ''} ${index === 0 ? 'selected' : ''}`}
+                      key={id}
+                      onClick={() => getPayQrcodeUrl(id)}
+                    >
+                      <div>{name}</div>
+                      <div>{(price / 100).toFixed(2)}元</div>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="qrcode-container">
-              <QRCode
-                value={selectedQrcodeUrl}
-                fgColor="#ffffff" // 设置前景色为白色
-                bgColor="#000000" // 设置背景色为黑色
-              />
+              <div className="qrcode-tip-container">
+                <div className="qrcode-container">
+                  <QRCode
+                    value={selectedQrcodeUrl}
+                    fgColor="#ffffff" // 设置前景色为白色
+                    bgColor="#000000" // 设置背景色为黑色
+                  />
+                </div>
+              </div>
+              <div className="recharge-tip">请在5分钟内支付完成，支付完成之后请刷新页面</div>
             </div>
           </div>
+
         </div>
       )}
-
     </>
   )
 };
