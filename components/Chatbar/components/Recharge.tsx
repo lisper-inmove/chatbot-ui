@@ -20,7 +20,7 @@ export const RechargePanel = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedQrcodeUrl, setSelectedQrcodeUrl] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
-  const phost = "http://192.168.3.124:3001";
+  const phost = "https://agi.ailogy.cn/chatbot";
   const prepay_url = `${phost}/transaction/prepay`;
   const recharge_config_list_url = `${phost}/recharge-config/list`;
   const userinfo_name = "userinfo";

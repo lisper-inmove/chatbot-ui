@@ -16,7 +16,7 @@ export const LoginPanel = () => {
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const bhost = "https://agi.ailogy.cn/user-manager";
+  const bhost = "https://agi.ailogy.cn/chatbot";
   const login_url = `${bhost}/user/login`;
   const check_token_url = `${bhost}/user/check-token`;
 
