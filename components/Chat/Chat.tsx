@@ -67,6 +67,11 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const userinfo = JSON.stringnify(localStorage.getItem(userinfo_name) || '{}');
+  if (userinfo.is_plus_user) {
+    alert("请先升级为Plus用户");
+    return;
+  }
 
   const handleSend = useCallback(
     async (message: Message, deleteCount = 0, plugin: Plugin | null = null) => {
@@ -99,6 +104,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
           key: apiKey,
           prompt: updatedConversation.prompt,
           temperature: updatedConversation.temperature,
+          token: userinfo.token
         };
         const endpoint = getEndpoint(plugin);
         let body;
