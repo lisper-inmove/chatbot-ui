@@ -118,7 +118,7 @@ export const LoginPanel = () => {
       // event.currentTarget.reset();
       console.log('Api response', response.data.data);
       localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
-
+      window.location.reload();
     } catch (error) {
       console.error('Login error', error);
     }
