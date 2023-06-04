@@ -124,54 +124,6 @@ label {
   z-index: 9999;
 }
 
-.options-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.option {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;
-  color: #333;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.option.selected {
-  border: 2px solid #fafafa;
-}
-
-.option:hover {
-  background-color: #aaa;
-}
-
-.option.selected {
-  background-color: #333;
-  color: #fff;
-}
-
-.recharge-button {
-  background-color: #777777;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.recharge-button:hover {
-  background-color: #999;
-}
-
 .qrcode-container {
   display: flex;
   justify-content: center;
@@ -202,5 +154,53 @@ label {
   display: inline-block;
   max-width: 120px; /* 根据需要调整最大宽度 */
   white-space: nowrap;
+}
+
+
+.options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option {
+  display: inline-block; /* 修改为 inline-block */
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.option.selected {
+  border: 2px solid #fafafa;
+}
+
+.option:hover {
+  background-color: #aaa;
+}
+
+.option.selected {
+  background-color: #333;
+  color: #fff;
+}
+
+.recharge-button {
+  display: inline-block; /* 修改为 inline-block */
+  background-color: #777777;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recharge-button:hover {
+  background-color: #999;
 }
 

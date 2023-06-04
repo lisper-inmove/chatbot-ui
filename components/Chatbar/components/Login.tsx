@@ -2,16 +2,21 @@ import React, { SyntheticEvent, useRef } from 'react';
 import { IconLogin, IconLogout } from '@tabler/icons-react';
 import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import HomeContext from '@/pages/api/home/home.context';
 import axios from 'axios';
 
 
 export const LoginPanel = () => {
 
+  const { state: { rechargePanel }, dispatch: dispatch } = useContext(HomeContext);
+  console.log(rechargePanel);
+
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const bhost = "http://192.168.3.124:6003";
+  // const bhost = "https://agi.ailogy.cn/user-manager";
+  const bhost = "http://192.168.3.124:3001";
   const login_url = `${bhost}/user/login`;
   const check_token_url = `${bhost}/user/check-token`;
 
@@ -47,6 +52,13 @@ export const LoginPanel = () => {
     console.log(token_expire_at, timestamp);
     console.log("当前时间: " + currentDate);
     console.log("token过期时间: " + new Date(token_expire_at * 1000));
+
+    console.log(user_obj.is_plus_user, rechargePanel);
+    if (user_obj.is_plus_user && rechargePanel) {
+      dispatch({"field": "rechargePanel", "value": false});
+    } else if (!user_obj.is_plus_user && !rechargePanel) {
+      dispatch({"field": "rechargePanel", "value": true});
+    }
 
     if (isLogin) {
       return;

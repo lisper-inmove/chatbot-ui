@@ -54,5 +54,5 @@ export const initialState: HomeInitialState = {
   serverSideApiKeyIsSet: false,
   serverSidePluginKeysSet: false,
   loginPanel: false,
-  rechargePanel: false,
+  rechargePanel: true,
 };
