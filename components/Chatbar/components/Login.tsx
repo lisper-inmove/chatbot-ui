@@ -1,8 +1,7 @@
-import React, { SyntheticEvent, useRef, useState } from 'react';
+import React, { SyntheticEvent, useRef, useState, useContext } from 'react';
 import { IconLogin, IconLogout } from '@tabler/icons-react';
 import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
-import { useState, useContext } from 'react';
 import HomeContext from '@/pages/api/home/home.context';
 import axios from 'axios';
 import { USER_MANAGER_HOST } from '@/utils/app/const';
