@@ -148,8 +148,8 @@ export const RechargePanel = () => {
     {isMultiRechargeModalOpen && (
         <div className="recharge-modal-overlay">
           <div className="modal" ref={modalRef}>
+            <div className="recharge-tip">支付成功之后请刷新页面!!!</div>
             <div className="options-container">
-              支付成功之后请刷新页面!!!
               <div>
                 {recharge_config_list.map(({ id, name, price}, index) => (
                   <button
