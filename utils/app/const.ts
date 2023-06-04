@@ -5,6 +5,9 @@ export const DEFAULT_SYSTEM_PROMPT =
 export const OPENAI_API_HOST =
   process.env.OPENAI_API_HOST || 'https://api.openai.com';
 
+export const USER_MANAGER_HOST =
+  process.env.USER_MANAGER_HOST || 'http://127.0.0.1:6003';
+
 export const DEFAULT_TEMPERATURE = 
   parseFloat(process.env.NEXT_PUBLIC_DEFAULT_TEMPERATURE || "1");
 

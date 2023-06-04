@@ -1,10 +1,11 @@
-import React, { SyntheticEvent, useRef } from 'react';
+import React, { SyntheticEvent, useRef, useState } from 'react';
 import { IconLogin, IconLogout } from '@tabler/icons-react';
 import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
 import { useState, useContext } from 'react';
 import HomeContext from '@/pages/api/home/home.context';
 import axios from 'axios';
+import { USER_MANAGER_HOST } from '@/utils/app/const';
 
 
 export const LoginPanel = () => {
@@ -15,8 +16,7 @@ export const LoginPanel = () => {
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  // const bhost = "https://agi.ailogy.cn/user-manager";
-  const bhost = "http://192.168.3.124:3001";
+  const bhost = "https://agi.ailogy.cn/user-manager";
   const login_url = `${bhost}/user/login`;
   const check_token_url = `${bhost}/user/check-token`;
 
