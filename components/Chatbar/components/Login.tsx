@@ -10,7 +10,6 @@ import { USER_MANAGER_HOST } from '@/utils/app/const';
 export const LoginPanel = () => {
 
   const { state: { rechargePanel }, dispatch: dispatch } = useContext(HomeContext);
-  console.log(rechargePanel);
 
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(true);
@@ -51,7 +50,6 @@ export const LoginPanel = () => {
     const timestamp = Date.now() / 1000;
     const currentDate = new Date();
 
-    console.log(userobj.is_plus_user, rechargePanel);
     if (userobj.is_plus_user && rechargePanel) {
       dispatch({"field": "rechargePanel", "value": false});
     } else if (!userobj.is_plus_user && !rechargePanel) {
@@ -74,7 +72,6 @@ export const LoginPanel = () => {
         setIsLogin(false);
         return;
       }
-      console.log('Api response', response.data.data);
       localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
     } catch (error) {
       console.error('Login error', error);
@@ -97,21 +94,18 @@ export const LoginPanel = () => {
 
   const closeModal = (): void => {
     // 隐藏模态框的逻辑
-    console.log('关闭模态框');
     setIsLogin(false);
   };
 
   const handleLoginSubmit = async (event: SyntheticEvent): Promise<void> => {
     event.preventDefault();
     // 处理登录逻辑
-    console.log('登录表单已提交');
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const phone = formData.get('phone') as string;
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
     const phone_regex = /^1[0-9]{10}$/;
-    console.log(phone_regex.test(phone));
     if (phone && !phone_regex.test(phone)) {
       alert("手机号不正确");
       return;
@@ -155,7 +149,6 @@ export const LoginPanel = () => {
   const handleRegisterSubmit = (event: SyntheticEvent): void => {
     event.preventDefault();
     // 处理注册逻辑
-    console.log('注册表单已提交');
     setIsLogin(true);
   };
 
@@ -167,7 +160,6 @@ export const LoginPanel = () => {
 
   const handleInvalidPhone = (e: any): boolean => {
     if (e.target.value == "") {
-      console.log("no");
       e.target.setCustomValidity("手机号不能为空");
       return false;
     }
@@ -176,7 +168,6 @@ export const LoginPanel = () => {
 
   const handleInvalidEmail = (e: any): boolean => {
     if (e.target.value == "") {
-      console.log("no");
       e.target.setCustomValidity("邮箱不能为空");
       return false;
     }
@@ -185,7 +176,6 @@ export const LoginPanel = () => {
 
   const handleInvalidPassword = (e: any): boolean => {
     if (e.target.value == "") {
-      console.log("no");
       e.target.setCustomValidity("密码不能为空");
       return false;
     }
