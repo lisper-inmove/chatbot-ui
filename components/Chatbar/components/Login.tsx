@@ -13,7 +13,7 @@ export const LoginPanel = () => {
   console.log(rechargePanel);
 
   const { t } = useTranslation('sidebar');
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
   const bhost = "https://agi.ailogy.cn/chatbot";
   const login_url = `${bhost}/user/login`;
@@ -37,6 +37,9 @@ export const LoginPanel = () => {
     const user_json = localStorage.getItem(userinfo_name);
 
     if (!user_json) {
+      if (isLogin) {
+        setIsLogin(false);
+      }
       return;
     }
 
@@ -61,7 +64,7 @@ export const LoginPanel = () => {
 
     try {
       const data = {
-        "1": "1",
+        "1": 1,
       };
       const headers = {
         "token": token,
@@ -69,9 +72,10 @@ export const LoginPanel = () => {
       const response = await axios.post(
         check_token_url,
         data,
-        headers,
+        {headers},
       );
       if (response.data.code != 0) {
+        setIsLogin(false);
         return;
       }
       console.log('Api response', response.data.data);
@@ -81,6 +85,7 @@ export const LoginPanel = () => {
     }
 
     if (isLogin) {
+      setIsLogin(true);
       return;
     }
 
@@ -139,7 +144,7 @@ export const LoginPanel = () => {
       // event.currentTarget.reset();
       console.log('Api response', response.data.data);
       localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Login error', error);
     }
