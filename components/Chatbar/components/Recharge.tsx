@@ -39,6 +39,7 @@ export const RechargePanel = () => {
       setIsSingleRechargeModalOpen(false);
       setIsMultiRechargeModalOpen(true);
     }
+    setSelectedOption(recharge_config_list[0].id);
     getPayQrcodeUrl(recharge_config_list[0].id);
   };
 
@@ -48,8 +49,8 @@ export const RechargePanel = () => {
       if (config.id == id) {
         // TODO: 当前只支持支付宝的当面付，所以直接写死
         const data = {
-          "pay_method": "ALIPAY_F2F", 
-          "type": "CHATBOT_PLUS", 
+          "pay_method": "ALIPAY_F2F",
+          "type": "CHATBOT_PLUS",
           "commodity_id": config.id
         };
         const headers = {"token": user_obj.token};
@@ -156,7 +157,7 @@ export const RechargePanel = () => {
                 <div>
                   {recharge_config_list.map(({ id, name, price }, index) => (
                     <button
-                      className={`option recharge-button ${selectedOption === id ? 'selected' : ''} ${index === 0 ? 'selected' : ''}`}
+                      className={`option recharge-button ${selectedOption === id ? 'selected' : ''} ${index === 0 && selectedOption === id ? 'selected' : ''}`}
                       key={id}
                       onClick={() => getPayQrcodeUrl(id)}
                     >
