@@ -115,7 +115,7 @@ const Sidebar = <T,>({
 
     </div>
   ) : (
-    <OpenSidebarButton />
+    <OpenSidebarButton onClick={toggleOpen} side={side} />
   );
 };
 
