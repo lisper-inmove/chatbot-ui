@@ -35,6 +35,7 @@ export const LoginPanel = () => {
   async function checkToken() {
     const userjson = localStorage.getItem(userinfo_name);
 
+    console.log(userjson);
     if (!userjson) {
       if (isLogin) {
         setIsLogin(false);
@@ -143,14 +144,8 @@ export const LoginPanel = () => {
     localStorage.removeItem(userinfo_name);
     setTimeout(() => {
       setIsLogin(false);
-    }, 1000);
+    }, 500);
   }
-
-  const handleRegisterSubmit = (event: SyntheticEvent): void => {
-    event.preventDefault();
-    // 处理注册逻辑
-    setIsLogin(true);
-  };
 
   const handleClickOutside = (event: MouseEvent): void => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
