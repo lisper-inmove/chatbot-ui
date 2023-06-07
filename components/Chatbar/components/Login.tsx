@@ -59,6 +59,27 @@ export const LoginPanel = () => {
       dispatch({"field": "rechargePanel", "value": true});
     }
 
+    try {
+      const data = {
+        "1": "1",
+      };
+      const headers = {
+        "token": token,
+      };
+      const response = await axios.post(
+        check_token_url,
+        data,
+        headers,
+      );
+      if (response.data.code != 0) {
+        return;
+      }
+      console.log('Api response', response.data.data);
+      localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
+    } catch (error) {
+      console.error('Login error', error);
+    }
+
     if (isLogin) {
       return;
     }
