@@ -34,31 +34,27 @@ export const LoginPanel = () => {
   };
 
   async function checkToken() {
-    const user_json = localStorage.getItem(userinfo_name);
+    const userjson = localStorage.getItem(userinfo_name);
 
-    if (!user_json) {
+    if (!userjson) {
       if (isLogin) {
         setIsLogin(false);
       }
       return;
     }
 
-    const user_obj = JSON.parse(user_json);
-    userinfo['username'] = user_obj.username;
+    const userobj = JSON.parse(userjson);
+    userinfo['username'] = userobj.username;
 
-    const token = user_obj.token;
-    const token_expire_at = user_obj.token_expire_at;
+    const token = userobj.token;
+    const token_expire_at = userobj.token_expire_at;
     const timestamp = Date.now() / 1000;
     const currentDate = new Date();
 
-    console.log(token_expire_at, timestamp);
-    console.log("当前时间: " + currentDate);
-    console.log("token过期时间: " + new Date(token_expire_at * 1000));
-
-    console.log(user_obj.is_plus_user, rechargePanel);
-    if (user_obj.is_plus_user && rechargePanel) {
+    console.log(userobj.is_plus_user, rechargePanel);
+    if (userobj.is_plus_user && rechargePanel) {
       dispatch({"field": "rechargePanel", "value": false});
-    } else if (!user_obj.is_plus_user && !rechargePanel) {
+    } else if (!userobj.is_plus_user && !rechargePanel) {
       dispatch({"field": "rechargePanel", "value": true});
     }
 
@@ -141,10 +137,7 @@ export const LoginPanel = () => {
         alert(response.data.msg);
         return;
       }
-      // event.currentTarget.reset();
-      console.log('Api response', response.data.data);
       localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
-      // window.location.reload();
     } catch (error) {
       console.error('Login error', error);
     }
@@ -154,7 +147,9 @@ export const LoginPanel = () => {
 
   const logout = (): void => {
     localStorage.removeItem(userinfo_name);
-    setIsLogin(false);
+    setTimeout(() => {
+      setIsLogin(false);
+    }, 1000);
   }
 
   const handleRegisterSubmit = (event: SyntheticEvent): void => {

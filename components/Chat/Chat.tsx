@@ -67,10 +67,10 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const userinfo = JSON.parse(localStorage.getItem("userinfo") || '{}');
 
   const handleSend = useCallback(
     async (message: Message, deleteCount = 0, plugin: Plugin | null = null) => {
+      const userinfo = JSON.parse(localStorage.getItem("userinfo") || '{}');
       if (!userinfo.is_plus_user) {
         alert("请先升级为Plus用户");
         return;
