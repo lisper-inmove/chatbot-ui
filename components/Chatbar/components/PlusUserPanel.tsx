@@ -23,7 +23,7 @@ export const PlusUserPanel = () => {
     return `${year}-${month}-${day}`;
   }
 
-  return <SidebarButton 
-    text={t('VIP: ' + formatTimestamp(userinfo.member_expire_at))}
-  />
+  return <div style={{"marginLeft": "-80px"}}>
+    {t('VIP: ' + formatTimestamp(userinfo.member_expire_at))}
+  </div>
 };
