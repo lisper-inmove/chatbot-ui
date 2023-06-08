@@ -24,8 +24,6 @@ export const RechargePanel = () => {
   const prepay_url = `${phost}/transaction/prepay`;
   const recharge_config_list_url = `${phost}/recharge-config/list`;
   const userinfo_name = "userinfo";
-  const user_json = localStorage.getItem(userinfo_name) || '{}';
-  const user_obj = JSON.parse(user_json);
   const [recharge_config_list, setRechargeConfigList] = useState<RechargeConfig[]>([]);
 
   const handleButtonClick = async (): Promise<void> => {
@@ -45,6 +43,8 @@ export const RechargePanel = () => {
 
   const getPayQrcodeUrl = async (id: any): Promise<void> => {
     for (const config of recharge_config_list) {
+      const user_json = localStorage.getItem(userinfo_name) || '{}';
+      const user_obj = JSON.parse(user_json);
       console.log("请求prepay: " + config);
       if (config.id == id) {
         // TODO: 当前只支持支付宝的当面付，所以直接写死
