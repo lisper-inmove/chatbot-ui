@@ -29,6 +29,7 @@ export interface HomeInitialState {
   serverSidePluginKeysSet: boolean;
   loginPanel: boolean;
   rechargePanel: boolean;
+  isPlusUser: boolean;
 }
 
 export const initialState: HomeInitialState = {
@@ -55,4 +56,5 @@ export const initialState: HomeInitialState = {
   serverSidePluginKeysSet: false,
   loginPanel: false,
   rechargePanel: true,
+  isPlusUser: false,
 };

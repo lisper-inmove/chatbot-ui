@@ -9,10 +9,11 @@ import { USER_MANAGER_HOST } from '@/utils/app/const';
 
 export const LoginPanel = () => {
 
-  const { state: { rechargePanel }, dispatch: dispatch } = useContext(HomeContext);
+  const { state: { rechargePanel, isPlusUser }, dispatch: dispatch } = useContext(HomeContext);
 
   const { t } = useTranslation('sidebar');
   const [isLogin, setIsLogin] = useState(true);
+  const [isLogout, setIsLogout] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const bhost = "https://agi.ailogy.cn/chatbot";
   const login_url = `${bhost}/user/login`;
@@ -35,11 +36,18 @@ export const LoginPanel = () => {
   async function checkToken() {
     const userjson = localStorage.getItem(userinfo_name);
 
-    console.log(userjson);
     if (!userjson) {
       if (isLogin) {
         setIsLogin(false);
+        setIsLogout(true);
       }
+      return;
+    }
+
+    // 如果用户点了退出，则不再检查token
+    // 解决退出之后，从localStorage中删除了userinfo，却还能获取到userinfo，然后又自动登陆的问题
+    if (isLogout) {
+      setIsLogin(true);
       return;
     }
 
@@ -53,8 +61,10 @@ export const LoginPanel = () => {
 
     if (userobj.is_plus_user && rechargePanel) {
       dispatch({"field": "rechargePanel", "value": false});
+      dispatch({"field": "isPlusUser", "value": true});
     } else if (!userobj.is_plus_user && !rechargePanel) {
       dispatch({"field": "rechargePanel", "value": true});
+      dispatch({"field": "isPlusUser", "value": false});
     }
 
     try {
@@ -73,20 +83,11 @@ export const LoginPanel = () => {
         setIsLogin(false);
         return;
       }
+      setIsLogin(true);
+      setIsLogout(false);
       localStorage.setItem(userinfo_name, JSON.stringify(response.data.data));
     } catch (error) {
       console.error('Login error', error);
-    }
-
-    if (isLogin) {
-      setIsLogin(true);
-      return;
-    }
-
-    if (token_expire_at > timestamp) {
-      // token没过期,不用检查
-      setIsLogin(true);
-      return;
     }
 
   }
@@ -138,10 +139,12 @@ export const LoginPanel = () => {
     }
 
     setIsLogin(true);
+    setIsLogout(false);
   };
 
   const logout = (): void => {
     localStorage.removeItem(userinfo_name);
+    setIsLogout(true);
     setTimeout(() => {
       setIsLogin(false);
     }, 500);

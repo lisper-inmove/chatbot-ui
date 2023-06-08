@@ -15,6 +15,7 @@ import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
 import { LoginPanel } from './Login';
 import { RechargePanel } from './Recharge';
+import { PlusUserPanel } from './PlusUserPanel';
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
@@ -29,6 +30,7 @@ export const ChatbarSettings = () => {
       conversations,
       loginPanel,
       rechargePanel,
+      isPlusUser,
     },
     dispatch: homeDispatch,
   } = useContext(HomeContext);

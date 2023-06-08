@@ -45,7 +45,6 @@ export const RechargePanel = () => {
     for (const config of recharge_config_list) {
       const user_json = localStorage.getItem(userinfo_name) || '{}';
       const user_obj = JSON.parse(user_json);
-      console.log("请求prepay: " + config);
       if (config.id == id) {
         // TODO: 当前只支持支付宝的当面付，所以直接写死
         const data = {
@@ -59,7 +58,6 @@ export const RechargePanel = () => {
           data,
           {headers}
         );
-        console.log("prepay result: " + response.data.msg);
         if (response.data.code != 0) {
           alert("支付请求出错!");
           return;
