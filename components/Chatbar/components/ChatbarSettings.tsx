@@ -52,6 +52,7 @@ export const ChatbarSettings = () => {
 
       {!loginPanel ? <LoginPanel /> : null}
 
+      { isPlusUser ? <PlusUserPanel /> : null  }
     </div>
   );
 };
