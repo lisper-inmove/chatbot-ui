@@ -24,6 +24,6 @@ export const PlusUserPanel = () => {
   }
 
   return <div style={{"marginLeft": "-80px"}}>
-    {t('VIP: ' + formatTimestamp(userinfo.member_expire_at))}
+    {t('VIP: ' + formatTimestamp(userinfo.vip_expire_at))}
   </div>
 };

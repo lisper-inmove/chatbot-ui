@@ -59,10 +59,10 @@ export const LoginPanel = () => {
     const timestamp = Date.now() / 1000;
     const currentDate = new Date();
 
-    if (userobj.is_plus_user && rechargePanel) {
+    if (userobj.is_vip && rechargePanel) {
       dispatch({"field": "rechargePanel", "value": false});
       dispatch({"field": "isPlusUser", "value": true});
-    } else if (!userobj.is_plus_user && !rechargePanel) {
+    } else if (!userobj.is_vip && !rechargePanel) {
       dispatch({"field": "rechargePanel", "value": true});
       dispatch({"field": "isPlusUser", "value": false});
     }

@@ -71,7 +71,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   const handleSend = useCallback(
     async (message: Message, deleteCount = 0, plugin: Plugin | null = null) => {
       const userinfo = JSON.parse(localStorage.getItem("userinfo") || '{}');
-      if (!userinfo.is_plus_user) {
+      if (!userinfo.is_vip) {
         alert("请先升级为Plus用户");
         return;
       }
