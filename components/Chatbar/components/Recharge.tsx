@@ -4,6 +4,7 @@ import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
 import QRCode from 'qrcode.react';
 import axios from 'axios';
+import { NEXT_PUBLIC_CHATBOT_API_HOST } from '@/utils/app/const';
 
 interface RechargeConfig {
   id: string;
@@ -20,9 +21,8 @@ export const RechargePanel = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedQrcodeUrl, setSelectedQrcodeUrl] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
-  const phost = "https://agi.ailogy.cn/chatbot";
-  const prepay_url = `${phost}/transaction/prepay`;
-  const recharge_config_list_url = `${phost}/recharge-config/list`;
+  const prepay_url = `${NEXT_PUBLIC_CHATBOT_API_HOST}/transaction/prepay`;
+  const recharge_config_list_url = `${NEXT_PUBLIC_CHATBOT_API_HOST}/recharge-config/list`;
   const userinfo_name = "userinfo";
   const [recharge_config_list, setRechargeConfigList] = useState<RechargeConfig[]>([]);
 

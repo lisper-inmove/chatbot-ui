@@ -4,7 +4,7 @@ import { SidebarButton } from '@/components/Sidebar/SidebarButton';
 import { useTranslation } from 'react-i18next';
 import HomeContext from '@/pages/api/home/home.context';
 import axios from 'axios';
-import { USER_MANAGER_HOST } from '@/utils/app/const';
+import { NEXT_PUBLIC_USER_MANAGER_HOST } from '@/utils/app/const';
 
 
 export const LoginPanel = () => {
@@ -15,9 +15,8 @@ export const LoginPanel = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLogout, setIsLogout] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const bhost = "https://agi.ailogy.cn/chatbot";
-  const login_url = `${bhost}/user/login`;
-  const check_token_url = `${bhost}/user/check-token`;
+  const login_url = `${NEXT_PUBLIC_USER_MANAGER_HOST}/user/login`;
+  const check_token_url = `${NEXT_PUBLIC_USER_MANAGER_HOST}/user/check-token`;
 
   const [isPhoneLogin, setIsPhoneLogin] = useState(true);
   const [phone, setPhone] = useState('');
