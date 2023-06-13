@@ -174,6 +174,7 @@ export const RechargePanel = () => {
                   />
                 </div>
               </div>
+              <div className="recharge-tip">使用支付宝扫码支付,可添加客服微信: xxxxxx</div>
               <div className="recharge-tip">请在5分钟内支付完成，支付完成之后请刷新页面</div>
             </div>
           </div>
