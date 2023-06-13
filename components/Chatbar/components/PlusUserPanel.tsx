@@ -23,7 +23,8 @@ export const PlusUserPanel = () => {
     return `${year}-${month}-${day}`;
   }
 
-  return <div style={{"marginLeft": "-80px"}}>
+  return <> { isPlusUser && (<div style={{"marginLeft": "-80px"}}>
     {t('VIP: ' + formatTimestamp(userinfo.vip_expire_at))}
-  </div>
+  </div> )}
+  </>;
 };
