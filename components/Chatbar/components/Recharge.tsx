@@ -126,7 +126,7 @@ export const RechargePanel = () => {
     <>
 
     <SidebarButton
-      text={t('Recharge')}
+      text={t('升级会员')}
       icon={<IconRecharging size={18} />}
       onClick={handleButtonClick}
     />
