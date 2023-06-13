@@ -57,7 +57,6 @@ export const ChatbarSettings = () => {
 
       <HelperPanel />
 
-       {!serverSideApiKeyIsSet ? (
     </div>
   );
 };
