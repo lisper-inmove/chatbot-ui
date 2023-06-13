@@ -22,7 +22,7 @@ export const RechargePanel = () => {
   const [selectedQrcodeUrl, setSelectedQrcodeUrl] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
   const prepay_url = `${NEXT_PUBLIC_CHATBOT_API_HOST}/transaction/prepay`;
-  const recharge_config_list_url = `${NEXT_PUBLIC_CHATBOT_API_HOST}/recharge-config/list`;
+  const recharge_config_list_url = `${NEXT_PUBLIC_CHATBOT_API_HOST}/recharge-config/active-list`;
   const userinfo_name = "userinfo";
   const [recharge_config_list, setRechargeConfigList] = useState<RechargeConfig[]>([]);
 
