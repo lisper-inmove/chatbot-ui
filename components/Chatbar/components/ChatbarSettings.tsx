@@ -16,7 +16,7 @@ import { PluginKeys } from './PluginKeys';
 import { LoginPanel } from './Login';
 import { RechargePanel } from './Recharge';
 import { PlusUserPanel } from './PlusUserPanel';
-import { HelperPanel } from './HelpCenter.tsx';
+import { HelperPanel } from './HelpCenter';
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
